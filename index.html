@@ -8,6 +8,27 @@
     <title>Document</title>
 </head>
 <body>
+    <template>
+        <title-card title="Hello World">
+            <list item-width="300" item-height="32">
+                <list-item title="Item 1" expandable="true"></list-item>
+                <list-item title="Item 2" expandable="false"></list-item>
+                <list-item title="Item 3" expandable="true"></list-item>
+            </list>
+        </title-card>
+    </template>
 
+    <svg></svg>
+
+    <script type="module">
+        import {SVGGenerator} from "./src/crs-svg-generator.js";
+        import {initialize} from "./index.js";
+
+        const generator = initialize(new SVGGenerator());
+        generator.parseTemplate(document.querySelector("template"), null).then(async result => {
+            const markup = await result.getMarkup();
+            console.log(markup);
+        });
+    </script>
 </body>
 </html>
